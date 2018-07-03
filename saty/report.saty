@@ -3,7 +3,7 @@
 @import: source
 
 document (|
-  title = {プログラミング実習1A\fil-both; -レポート課題（第0回）-};
+  title = {プログラミング実習\fil-both; -レポート課題（第0回）-};
   author = {123456789 Name};
   date = {2018/7/3};
   show-title = true;
@@ -11,29 +11,29 @@ document (|
   show-footer = true;
   show-header  = true;
 |) '<
-    +section{課題1} <
-        +subsection{ソースコード} <
-          +p {
-            ソースコードはconvert-satyh.rsによって変換する。以下のように埋め込む。
-        }
-        #example-c;
-        >
-        +subsection{ボックス} <
-          +p {
-            ボックスの使い方。
-        }
-        +code-box(```
-            $ cc example.c -o example
-            $ ./example
-        ```);
-        >
-        +subsection{数式} <
-          +math (
-            let hoge = ${\sqrt{ccc}} in
-            ${
-              a = b #hoge
-            }
-          );
-        >
+  +section{課題1} <
+    +subsection{ソースコード} <
+      +p {
+        ソースコードはconvert-satyh.rsによって変換する。以下のように埋め込む。
+      }
+      #example-c;
     >
+    +subsection{ボックス} <
+      +p {
+        ボックスの使い方。
+      }
+      +code-box(```
+          $ cc example.c -o example
+          $ ./example
+      ```);
+    >
+    +subsection{数式} <
+      +math (
+        let hoge = ${\sqrt{ccc}} in
+        ${
+          a = b #hoge
+        }
+      );
+    >
+  >
 >
