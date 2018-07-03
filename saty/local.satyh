@@ -1,13 +1,28 @@
+@require: vdecoset
 @require: code
 
-let-block ctx +code-box code =
-  read-block (ctx |> set-paragraph-margin 0pt 12pt) '<+code(code);>
+let-block ctx +centering it =
+  line-break true true ctx (inline-fil ++ read-inline ctx it ++ inline-fil)
 
-let t = '<+code-box(```
-        +p{
-            画像が挿入できる証拠として，ロゴを図\ref(`fig:logo`);に掲げておこう。
-            \figure ?:(`fig:logo`){\SATySFi;のロゴ}<
-                +image-frame{\insert-image(7cm)(`satysfi-logo.jpg`);}
-            >
-        }
-    ```);>
+let-block ctx +code-box code =
+  read-block
+    (ctx |> set-font-size 10pt) 
+    '<+code(code);>
+
+let-block ctx +frame content =
+  let pads = (10pt, 10pt, 10pt, 10pt) in
+  let decoset = VDecoSet.simple-frame-stroke 1pt (Color.gray 0.75) in
+    block-frame-breakable ctx pads decoset (fun ctx -> read-block ctx content)
+
+let-inline ctx \insert-image w path =
+  let img = load-image path in
+    use-image-by-width img w
+
+let-inline ctx \insert-pdf w path no =
+  let img = load-pdf-image path no in
+    use-image-by-width img w
+
+let-block ctx +image-frame content =
+  let pads = (10pt, 10pt, 10pt, 10pt) in
+  let decoset = VDecoSet.simple-frame-stroke 1pt Color.black in
+    block-frame-breakable ctx pads decoset (fun ctx -> read-block ctx '<+centering{#content;}>)
