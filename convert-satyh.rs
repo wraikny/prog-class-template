@@ -61,13 +61,18 @@ fn main() -> Result<(), ConvertError> {
     
     for path in paths {
         let path = path.unwrap().path();
+
+        if !path.display().to_string().contains(".c") {
+            continue;
+        }
+
         let mut sf = fs::File::open(path.clone())?;
         let mut buf = vec![];
         sf.read_to_end(&mut buf)?;
         let source = std::str::from_utf8(&buf)?;
         println!("Read file: {}", path.display());
 
-        let filename = &path.display().to_string().replace("src/", "").replace("/", "-");
+        let filename = &path.display().to_string().replace("source/", "").replace("/", "-");
         f.write(format(filename, source.to_string()).as_bytes())?;
         println!("Write file: {}", path.display());
     }
