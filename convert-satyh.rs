@@ -1,11 +1,10 @@
 #![feature(try_trait)]
 
-use std::{fs, env};
+use std::fs;
 use std::io::{Read, BufWriter, Write};
 
 #[derive(Debug)]
 enum ConvertError {
-    ArgLength,
     Arg(std::option::NoneError),
     IO(std::io::Error),
     UTF8(std::str::Utf8Error),
@@ -34,7 +33,6 @@ impl std::fmt::Display for ConvertError {
         use ConvertError::*;
         
         match self {
-            ArgLength => write!(f, "The length of the arguments is not enough."),
             Arg(e) => write!(f, "{:?}", e),
             IO(e) => write!(f, "{:?}", e),
             UTF8(e) => write!(f, "{:?}", e),
