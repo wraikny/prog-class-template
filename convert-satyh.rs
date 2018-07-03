@@ -41,7 +41,7 @@ impl std::fmt::Display for ConvertError {
 }
 
 fn format (filename : &String, source : String) -> String {
-    let filename = filename.replace(".", "-");
+    let filename = filename.replace(".", "-").to_lowercase();
     format!("let {} = '<+code-box(```\n{}\n```);>\n\n", filename, source)
 }
 
