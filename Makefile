@@ -4,5 +4,5 @@ output/StudentNum-Name-00.pdf: saty/* convert-satyh.out
 convert-satyh.out: convert-satyh.rs
 	rustc convert-satyh.rs -o convert-satyh.out
 
-saty/source.satyh: source
-	./convert-satyh.out
+saty/source.satyh: source convert-satyh.out
+	./convert-satyh.out template
