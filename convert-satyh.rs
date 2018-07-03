@@ -49,25 +49,16 @@ fn format (filename : &String, source : String) -> String {
 
 
 fn main() -> Result<(), ConvertError> {
-    let args : Vec<_> = env::args().collect();
-    if args.len() < 2 {
-        return Err(ConvertError::ArgLength);
-    }
-
-    let name = &args[1];
-    let dir = format!("../{}/source", name);
-    println!("Get directory name: {}", dir);
+    let dir = "source";
 
     let paths = fs::read_dir(dir)?;
     println!("Read directory");
 
-    let file = fs::File::create(format!("../{}/saty/source.satyh", name))?;
+    let file = fs::File::create("saty/source.satyh")?;
     println!("Create file");
 
     let mut f = BufWriter::new(file);
-    f.write(b"@import: local\n\n")?;
-
-    let replace = format!("../{}/source/", name);
+    f.write(b"@import: ../../template/saty/local\n\n")?;
     
     for path in paths {
         let path = path.unwrap().path();
@@ -82,7 +73,7 @@ fn main() -> Result<(), ConvertError> {
         let source = std::str::from_utf8(&buf)?;
         println!("Read file: {}", path.display());
 
-        let filename = &path.display().to_string().replace(&replace, "").replace("/", "-");
+        let filename = &path.display().to_string().replace("source/", "").replace("/", "-");
         f.write(format(filename, source.to_string()).as_bytes())?;
         println!("Write file: {}", path.display());
     }
