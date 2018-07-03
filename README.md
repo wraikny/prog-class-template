@@ -1,5 +1,8 @@
 # プログラミング課題用テンプレート (SATySFi)
 
+## stjarticle
+https://github.com/puripuri2100/stjarticle
+
 ## 依存関係
 必要なもの: Rust, SATySFi  
 

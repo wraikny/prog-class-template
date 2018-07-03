@@ -1,16 +1,39 @@
-@require: stdja
-@import: local
+@import: ../../template/saty/stjarticle
+@import: ../../template/saty/local
 @import: source
 
 document (|
   title = {プログラミング実習1A\fil-both; -レポート課題（第0回）-};
-  author = {123456789 TsukubaTaro};
+  author = {123456789 Name};
+  date = {2018/7/3};
   show-title = true;
   show-toc = false;
+  show-footer = true;
+  show-header  = true;
 |) '<
-    +p {
-        hello
-    }
-
-    #example-c;
+    +section{課題1} <
+        +subsection{ソースコード} <
+          +p {
+            ソースコードはconvert-satyh.rsによって変換する。以下のように埋め込む。
+        }
+        #example-c;
+        >
+        +subsection{ボックス} <
+          +p {
+            ボックスの使い方。
+        }
+        +code-box(```
+            $ cc example.c -o example
+            $ ./example
+        ```);
+        >
+        +subsection{数式} <
+          +math (
+            let hoge = ${\sqrt{ccc}} in
+            ${
+              a = b #hoge
+            }
+          );
+        >
+    >
 >
