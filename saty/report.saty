@@ -1,0 +1,16 @@
+@require: stdja
+@import: local
+@import: source
+
+document (|
+  title = {プログラミング実習1A\fil-both; -レポート課題（第0回）-};
+  author = {123456789 TsukubaTaro};
+  show-title = true;
+  show-toc = false;
+|) '<
+    +p {
+        hello
+    }
+
+    #example-c;
+>

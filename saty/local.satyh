@@ -1,0 +1,13 @@
+@require: code
+
+let-block ctx +code-box code =
+  read-block (ctx |> set-paragraph-margin 0pt 12pt) '<+code(code);>
+
+let t = '<+code-box(```
+        +p{
+            画像が挿入できる証拠として，ロゴを図\ref(`fig:logo`);に掲げておこう。
+            \figure ?:(`fig:logo`){\SATySFi;のロゴ}<
+                +image-frame{\insert-image(7cm)(`satysfi-logo.jpg`);}
+            >
+        }
+    ```);>
