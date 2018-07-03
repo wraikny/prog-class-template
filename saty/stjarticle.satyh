@@ -529,9 +529,14 @@ let title-deco =
          block-nil
        else
          let ctx = get-standard-context ftrwid in
-         let it-pageno = embed-string (arabic pbinfo#page-number) in
-           line-break true true ctx
-             (inline-fil ++ (read-inline ctx {— #it-pageno; —}) ++ inline-fil)
+            let it-pageno = embed-string (arabic pbinfo #page-number) in
+            let it-num =
+              match get-cross-reference `number-of-pages` with
+                | None -> {?}
+                | Some(s-num) -> embed-string s-num
+            in
+              line-break true true ctx
+                (inline-fil ++ (read-inline ctx {— #it-pageno; / #it-num; —}) ++ inline-fil)
       in
         (|
           header-origin  = hdrorg;
