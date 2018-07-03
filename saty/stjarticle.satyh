@@ -1,7 +1,14 @@
 % -*- coding: utf-8 -*-
-% version[1.3]
-% https://github.com/puripuri2100/stjarticle
-% wraikny added little change
+%version[1.3.2]
+%Repository:https://github.com/puripuri2100/stjarticle
+%This file's license is "MIT LICENSE"
+%lnc. | https://github.com/puripuri2100/stjarticle/blob/master/LICENSE
+%
+%SATySFi:
+%https://github.com/gfngfn/SATySFi
+
+% wraikny add little change in footer
+
 
 @require: pervasives
 @require: gr
@@ -522,18 +529,13 @@ let title-deco =
             +++ bb-float-boxes
       in
       let footer =
-       if not record #show-footer then
-          block-nil
+       if not record#show-footer then
+         block-nil
        else
-          let ctx = get-standard-context ftrwid in
-          let it-pageno = embed-string (arabic pbinfo #page-number) in
-          let it-num =
-            match get-cross-reference `number-of-pages` with
-              | None -> {?}
-              | Some(s-num) -> embed-string s-num
-          in
-            line-break true true ctx
-              (inline-fil ++ (read-inline ctx {— #it-pageno; / #it-num; —}) ++ inline-fil)
+         let ctx = get-standard-context ftrwid in
+         let it-pageno = embed-string (arabic pbinfo#page-number) in
+           line-break true true ctx
+             (inline-fil ++ (read-inline ctx {— #it-pageno; —}) ++ inline-fil)
       in
         (|
           header-origin  = hdrorg;
