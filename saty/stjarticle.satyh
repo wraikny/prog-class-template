@@ -1,14 +1,11 @@
 % -*- coding: utf-8 -*-
 %version[1.3.2]
 %Repository:https://github.com/puripuri2100/stjarticle
-%This file's license is "MIT LICENSE"
-%lnc. | https://github.com/puripuri2100/stjarticle/blob/master/LICENSE
 %
 %SATySFi:
 %https://github.com/gfngfn/SATySFi
-
-% wraikny add little change in footer
-
+%Author:
+%(C) Naoki Kaneko and T. Suwa 2018
 
 @require: pervasives
 @require: gr
@@ -500,7 +497,7 @@ let title-deco =
           get-standard-context hdrwid
             |> set-paragraph-margin 0pt 0pt
         in
-        let ib-text = (read-inline ctx title ++ inline-fil ++ read-inline ctx author)
+        let ib-text = read-inline ctx title ++ inline-fil ++ read-inline ctx author
        in
 %       let () = display-message `insert` in
        let (bb-float-boxes, acc) =
@@ -525,18 +522,18 @@ let title-deco =
             +++ bb-float-boxes
       in
       let footer =
-       if not record#show-footer then
-         block-nil
-       else
-         let ctx = get-standard-context ftrwid in
-            let it-pageno = embed-string (arabic pbinfo #page-number) in
-            let it-num =
-              match get-cross-reference `number-of-pages` with
-                | None -> {?}
-                | Some(s-num) -> embed-string s-num
-            in
-              line-break true true ctx
-                (inline-fil ++ (read-inline ctx {— #it-pageno; / #it-num; —}) ++ inline-fil)
+        if not record#show-footer then
+          block-nil
+        else
+          let ctx = get-standard-context ftrwid in
+          let it-pageno = embed-string (arabic pbinfo#page-number) in
+          let it-num =
+            match get-cross-reference `number-of-pages` with
+              | None -> {?}
+              | Some(s-num) -> embed-string s-num
+          in
+            line-break true true ctx
+              (inline-fil ++ (read-inline ctx {— #it-pageno; —}) ++ inline-fil)
       in
         (|
           header-origin  = hdrorg;
@@ -545,9 +542,11 @@ let title-deco =
           footer-content = footer;
         |)
     in
-      % page-break page pagecontf pagepartsf (bb-title +++ bb-toc +++ bb-main)
+      % dummy
+      let ctx = (get-standard-context ftrwid)
+      in
       page-break page pagecontf pagepartsf (
-        (bb-title +++ bb-toc +++ bb-main) +++ line-break false false (get-standard-context ftrwid) (
+        (bb-title +++ bb-toc +++ bb-main) +++ line-break false false ctx (
           hook-page-break (
             fun pbinfo _ -> (
               register-cross-reference `number-of-pages` (arabic pbinfo#page-number)
