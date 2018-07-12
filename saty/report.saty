@@ -1,4 +1,6 @@
-@import: ../../template/saty/stjarticle
+@require: itemize
+
+@import: ../../template/saty/stjarticle/stjarticle
 @import: ../../template/saty/local
 @import: source
 
@@ -35,5 +37,10 @@ document (|
         }
       );
     >
+  >
+  +section{参考文献} <
+    +listing {
+      * 高橋麻奈 (2017) 「やさしい C 第 5 版」風工舎.
+    }
   >
 >

@@ -1,0 +1,3 @@
+[submodule "saty/stjarticle"]
+	path = saty/stjarticle
+	url = git@github.com:wraikny/stjarticle.git
