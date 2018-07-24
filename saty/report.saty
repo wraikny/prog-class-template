@@ -37,6 +37,14 @@ document (|
         }
       );
     >
+    +subsection{画像} <
+      +image-frame {
+        % \insert-image(7cm)(`hoge.jpg`);
+      }
+      +image-frame {
+        % \insert-pdf(7cm)(`saty/image/hoge.pdf`)(1);
+      }
+    >
   >
   +section{参考文献} <
     +listing {

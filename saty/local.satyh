@@ -58,5 +58,5 @@ let-inline ctx \insert-pdf w path no =
 
 let-block ctx +image-frame content =
   let pads = (10pt, 10pt, 10pt, 10pt) in
-  let decoset = VDecoSet.simple-frame-stroke 1pt Color.black in
+  let decoset = VDecoSet.simple-frame-stroke 1pt (Color.gray 0.75) in
     block-frame-breakable ctx pads decoset (fun ctx -> read-block ctx '<+centering{#content;}>)
